@@ -1,11 +1,26 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+    <style name="AppTheme" parent="@android:style/Theme">
     </style>
+
+    <!--圆角背景textview-->
+    <declare-styleable name="EasyTipsView">
+        <attr name="tips_bg" format="color"/>
+        <attr name="tips_gravity" format="enum">
+            <enum name="top" value="0" />
+            <enum name="left" value="1" />
+            <enum name="bottom" value="2" />
+            <enum name="right" value="3" />
+        </attr>
+
+        <attr name="tips_scale" format="float"/>
+        <!--<attr name="tips_scale_dp" format="dimension"/>-->
+        <attr name="tips_scale_high" format="dimension"/>
+
+        <attr name="tips_Padding" format="dimension"/>
+        <attr name="tips_Cornor" format="dimension"/>
+
+    </declare-styleable>
 
 </resources>
