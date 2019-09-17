@@ -1,4 +1,4 @@
-package com.example.huanguo.easytips;
+package com.kugou.fanxing.allinone.common.widget.common;
 
 
 import android.content.Context;
@@ -11,8 +11,11 @@ import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.widget.TextView;
 
+import com.kugou.fanxing.allinone.watch.R;
+
 /**
- * tips控件
+ *  tips控件
+ *  * Created by huanguo on 2019/4/23.
  */
 public class EasyTipsView extends TextView {
 
@@ -67,7 +70,6 @@ public class EasyTipsView extends TextView {
             padding = typedArray.getDimensionPixelOffset(R.styleable.EasyTipsView_tips_Padding, 15);//text pre
             mCornor = typedArray.getDimensionPixelOffset(R.styleable.EasyTipsView_tips_Cornor, 15);//text pre
             typedArray.recycle();
-
         }
 
         mPaint = new Paint();
@@ -96,7 +98,7 @@ public class EasyTipsView extends TextView {
             mPath = new Path();
             if (mGravity == 0 || mGravity == 2) { // 上下
                 rectF = new RectF(0, mGravity == 0 ? mScaleHigh : 0, w, mGravity == 0 ? h : h - mScaleHigh);
-                float startW = mScale * w;
+                float startW = mScale * w - mScaleHigh;
                 float startH = mGravity == 0 ? mScaleHigh : (h - mScaleHigh);
                 float endH = mGravity == 0 ? 0 : h;
                 mPath.moveTo(startW, startH);
@@ -105,7 +107,7 @@ public class EasyTipsView extends TextView {
                 mPath.close();
             } else if (mGravity == 1 || mGravity == 3) { // 左右
                 rectF = new RectF(mGravity == 1 ? mScaleHigh : 0, 0, mGravity == 1 ? w : w - mScaleHigh, h);
-                float startH = mScale * h;
+                float startH = mScale * h - mScaleHigh;
                 float startW = mGravity == 1 ? mScaleHigh : (w - mScaleHigh);
                 float endW = mGravity == 1 ? 0 : w;
                 mPath.moveTo(startW, startH);
@@ -121,22 +123,15 @@ public class EasyTipsView extends TextView {
 
     @Override
     protected void onDraw(Canvas canvas) {
-
         canvas.save();
-
-
         canvas.drawPath(mPath, mPaint);
-
-
         canvas.drawRoundRect(rectF, mCornor, mCornor, mPaint);
-
-
-        // 绘制三角
-
         canvas.restore();
-
         super.onDraw(canvas);
+    }
 
-
+    public void setScale(float scale){
+        mScale = scale;
+        invalidate();
     }
 }
